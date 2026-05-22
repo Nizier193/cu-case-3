@@ -304,9 +304,11 @@ class Agent:
     def __init__(self, model_dir=None):
         _require_torch()
         print("Обучаем на Kaggle")
+        raise
 
         self.model_dir = Path(model_dir) if model_dir is not None else Path(".")
         self.checkpoint_path = self.model_dir
+
         if not self.checkpoint_path.exists():
             raise FileNotFoundError(
                 f"Файл весов не найден: {self.checkpoint_path}. Сначала обучите "
