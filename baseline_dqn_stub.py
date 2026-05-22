@@ -303,8 +303,10 @@ class Agent:
 
     def __init__(self, model_dir=None):
         _require_torch()
+        print("Обучаем на Kaggle")
+
         self.model_dir = Path(model_dir) if model_dir is not None else Path(".")
-        self.checkpoint_path = self.model_dir / "dqn_breakout.pt"
+        self.checkpoint_path = self.model_dir
         if not self.checkpoint_path.exists():
             raise FileNotFoundError(
                 f"Файл весов не найден: {self.checkpoint_path}. Сначала обучите "
@@ -354,12 +356,12 @@ def parse_args():
     return parser.parse_args()
 
 
-def main():
-    args = parse_args()
-    trainer = DQNTrainer(seed=args.seed)
-    trainer.train(total_steps=args.total_steps, checkpoint_path=args.checkpoint_path)
-    print(f"Файл весов сохранен в {args.checkpoint_path}", flush=True)
+# def main():
+#     args = parse_args()
+#     trainer = DQNTrainer(seed=args.seed)
+#     trainer.train(total_steps=args.total_steps, checkpoint_path=args.checkpoint_path)
+#     print(f"Файл весов сохранен в {args.checkpoint_path}", flush=True)
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
